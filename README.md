@@ -1,56 +1,30 @@
-# Ansible Role for Loki and Promtail
+# Ansible Role for Loki
 
-Install latest [loki](https://github.com/grafana/loki) and/or [promtail](https://grafana.com/docs/loki/latest/clients/promtail/) versions with [ansible](https://docs.ansible.com/).
+![molecule](https://github.com/tibroc/monitoring_loki/actions/workflows/molecule.yml/badge.svg)
+
+Install the latest [loki](https://github.com/grafana/loki) version with [ansible](https://docs.ansible.com/).
 
 ## Role Variables
 
 Have a look at the [defaults](defaults/main.yml) to see what variables you can set.
-You should set `has_loki` and `has_promtail` to `true` on instances that should have loki and/or promtail installed, respectively.
 
-For loki you can specify your log retention period by setting the variable `loki_retention_deletes` to `true` and
+You can specify the log retention period by setting the variable `loki_retention_deletes` to `true` and
 `loki_retention_period` to the desired retention period.
 
-For promtail, as an example config, you can turn on two jobs as an example config by setting either one of `promtail_job_journal` or `promtail_job_nginx` to `true`.
-In most cases, however, you would probably want to provide your own config-templates for loki and promtail.
-You can achieve this by changing the path to the template files in `loki_config_template` and `promtail_config_template`.
-
-Make sure that promtail has reading rights on the corresponding log files.
-Per default the promtail user will be added to the `adm` group that can read logs.
-If you want to change this behavior set `make_varlog_accessible` to `false`.
-You can also add the user to arbitrary other groups by specifying `additional_groups` as a list.
+The role contains a template for a basic config file.
+In most cases, however, you would probably want to provide your own config-templates.
+You can achieve this by changing the path to the template file in `loki_config_template`.
 
 ## Example Playbook
 
-If you have a centralised `loki` instance that collects logs from other servers via `promtail`, your `hosts.yml` might look something like this:
+Just add the role to your playbook:
 
 ```yaml
-all:
-  children:
-    # install promtail on these machines
-    servers:
-      hosts:
-        server[01:10].yourdomain.com:
-          has_promtail: true
-          loki_host: loki.yourdomain.com
-    # install loki here
-    loki:
-      hosts:
-        loki.yourdomain.com:
-          has_loki: true
-```
-
-Then your playbook might look like this:
-
-```yaml
-- hosts:
-    - servers
-    - loki
+- hosts: all
   become: true
   roles:
-    - loki
+    - tibroc.monitoring_loki
 ```
-
-Of course you can also install promtail and loki on the same machine.
 
 ## Development
 
@@ -58,7 +32,7 @@ For development and testing you can use [molecule](https://molecule.readthedocs.
 With podman as driver you can install it like this – preferably in a virtual environment (if you use docker, substitute `podman` with `docker`):
 
 ```bash
-pip install ansible ansible-lint yamllint molecule[podman]
+pip install -r .dev_requirements.txt
 ```
 
 Then you can *create* the test instances, apply the ansible config (*converge*) and *destroy* the test instances with these commands:
@@ -73,8 +47,8 @@ If you want to inspect a running test instance use `molecule login --host <insta
 
 ## License
 
-[MIT](LICENSE)
+[BSD-3-Clause](LICENSE)
 
 ## Author Information
 
-[virtUOS](https://www.virtuos.uni-osnabrueck.de)
+Timo Nogueira Brockmeyer

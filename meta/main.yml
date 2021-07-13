@@ -14,6 +14,9 @@ galaxy_info:
         - focal
         - bionic
     - name: EL
-      version:
+      versions:
         - 8
+    - name: Debian
+      versions:
+        - all
 dependencies: []

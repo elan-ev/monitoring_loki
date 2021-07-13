@@ -5,14 +5,3 @@
     name: loki
     state: restarted
     daemon_reload: true
-
-- name: restart promtail
-  systemd:
-    name: promtail
-    state: restarted
-    daemon_reload: true
-
-- name: reload nginx
-  service:
-    name: nginx
-    state: reloaded
