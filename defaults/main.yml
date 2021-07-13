@@ -1,0 +1,12 @@
+---
+
+# you can pass your own template file here
+loki_config_template: 'loki_config.yml.j2'
+
+loki_http_listen_port: 3100
+loki_grpc_listen_port: 9096
+# to enable deletion after a certain period
+# set to 'true' and the period duration
+# – e.g. 672h, i.e. 28 days
+loki_retention_deletes: false
+loki_retention_period: 0s

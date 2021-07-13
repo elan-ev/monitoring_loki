@@ -1,0 +1,8 @@
+---
+- name: converge
+  hosts: all
+  become: true
+  tasks:
+    - name: include loki
+      include_role:
+        name: monitoring_loki
