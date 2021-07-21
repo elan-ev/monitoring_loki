@@ -23,7 +23,7 @@ Just add the role to your playbook:
 - hosts: all
   become: true
   roles:
-    - tibroc.monitoring_loki
+    - elan.monitoring_loki
 ```
 
 ## Development
@@ -51,4 +51,4 @@ If you want to inspect a running test instance use `molecule login --host <insta
 
 ## Author Information
 
-Timo Nogueira Brockmeyer
+[ELAN e.V](https://elan-ev.de/)
