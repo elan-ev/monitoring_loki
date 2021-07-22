@@ -1,6 +1,6 @@
 # Ansible Role for Loki
 
-![molecule](https://github.com/elan/monitoring_loki/actions/workflows/molecule.yml/badge.svg)
+![molecule](https://github.com/elan-ev/monitoring_loki/actions/workflows/molecule.yml/badge.svg)
 
 Install the latest [loki](https://github.com/grafana/loki) version with [ansible](https://docs.ansible.com/).
 
