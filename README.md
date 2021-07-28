@@ -17,13 +17,14 @@ You can achieve this by changing the path to the template file in `loki_config_t
 
 ## Example Playbook
 
-Just add the role to your playbook:
+Just add the role to your playbook and specify your template:
 
 ```yaml
 - hosts: all
   become: true
   roles:
-    - elan.monitoring_loki
+    - role: elan.monitoring_loki
+      loki_config_template: 'custom_templates/loki.yml.j2'
 ```
 
 ## Development
