@@ -10,3 +10,6 @@ loki_grpc_listen_port: 9096
 # – e.g. 672h, i.e. 28 days
 loki_retention_deletes: false
 loki_retention_period: 0s
+
+configure_for_firewalld: false
+configure_for_ufw: false
