@@ -9,6 +9,7 @@
   user:
     name: loki
     state: present
+    create_home: false
 
 - name: create loki directory
   file:
